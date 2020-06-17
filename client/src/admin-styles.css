@@ -1,0 +1,392 @@
+.body {
+  background: #888;
+  width: 1800px;
+  height: 800px;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 200px;
+  color: #111;
+}
+.nomargin {
+  margin: 0;
+  padding: 0;
+}
+.header {
+  height: 80px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  padding-top: 20px;
+  background: rgb(153, 19, 19);
+  color: #eee;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.logo-div {
+  margin-left: 15px;
+  float: left;
+  width: 300px;
+  margin-right: 300px;
+}
+.logo-div2 {
+  width: 95%;
+
+  padding: 0;
+}
+.admin-menu-cmds {
+  width: 300px;
+  float: left;
+}
+ul#admin-mnu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul#admin-mnu li {
+  float: left;
+}
+ul#admin-mnu li button {
+  padding: 5px 10px;
+  color: #111;
+  background: #ccc;
+}
+.leftBar {
+  clear: left;
+  width: 200px;
+  height: 800px;
+  background: #bbb;
+  padding: 20px;
+  float: left;
+}
+
+.adminContent {
+  float: left;
+  background: #fff;
+  width: 1580px;
+  min-height: 1000px;
+  padding-left: 25px;
+  color: #111;
+}
+
+.adminContent a,
+.adminContent p {
+  color: #111;
+}
+
+.admin-projects-wrapper {
+  width: 1500px;
+}
+
+.long_pod_admin0 {
+  clear: left;
+  width: 1000px;
+  min-height: 40px;
+  color: #111;
+  padding: 10px 0;
+  font-size: 14px;
+}
+.long_pod_admin {
+  clear: left;
+  width: 1580px;
+  height: 80px;
+  color: #111;
+  padding: 10px 0;
+  border-bottom: 1px solid gray;
+}
+.long_pod_admin1 {
+  clear: left;
+  width: 1000px;
+  height: 130px;
+  color: #111;
+  padding: 10px 0;
+  border-bottom: 1px solid gray;
+}
+.long_pod_admin2 {
+  clear: left;
+  width: 50%;
+  height: 30px;
+  color: #111;
+  padding: 15px 0;
+  border-bottom: 1px solid gray;
+}
+.long_pod_admin a,
+.long_pod_admin p,
+.long_pod_admin .project-name,
+.long_pod_admin .properyfont {
+  color: #111;
+}
+
+.long_pod_admin0 textarea {
+  width: 200px;
+  margin-right: 20px;
+  padding: 10px;
+  font-family: arial;
+  font-size: 15px;
+}
+#input {
+  width: 330px;
+}
+.cmd-form {
+  width: 400px;
+  float: left;
+  height: 35px;
+  padding: 4px;
+  background: transparent;
+  margin-right: 2px;
+}
+.cmd-form-srch {
+  width: 650px;
+  float: left;
+  height: 25px;
+  padding: 10px;
+  background: transparent;
+  margin-right: 2px;
+  margin-bottom: 2px;
+}
+.cmd-form input {
+  width: 400px;
+}
+.cmd-form-srch input {
+  width: 460px;
+  padding: 4px;
+  margin: 0 5px;
+  border: none;
+}
+.cmd-form select {
+  width: 300px;
+}
+.cmd-line {
+  width: 1050px;
+  margin-bottom: 0px;
+  min-height: 90px;
+  background: #bbb;
+
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+th {
+  font-weight: bold;
+  padding: 0px;
+  height: 32px;
+  margin-bottom: 20px;
+  width: 1200px;
+  background: #eee;
+  text-align: left;
+}
+tr {
+  border-bottom: 1px solid gray;
+  padding: 20px 0;
+}
+table tr td {
+  padding: 20px 20px 20px 0;
+}
+.admin-projects-wrapper .row div {
+  border-right: 1px solid gray;
+  padding: 5px;
+}
+#img_small2 {
+  width: 200px;
+  height: auto;
+}
+.long_pod_admin #img_small {
+  width: 150px;
+  height: 80px;
+  margin: 0 auto;
+}
+.project_detail_admin {
+  width: 800px;
+  padding-top: 50px;
+  padding-left: 0px;
+}
+.project_detail_admin .project_detail {
+  width: 500px;
+  float: left;
+  min-height: 800px;
+}
+#img_lrg {
+  width: 300px;
+  height: 200px;
+
+  margin: 0;
+  padding: 0;
+  float: right;
+}
+.admin-pagewrapper {
+  width: 100%;
+  clear: left;
+}
+#edit {
+}
+.admin-edit-project {
+  clear: left;
+  padding-top: 10px;
+  width: 1020px;
+  background: #eee;
+}
+
+.form-group {
+  padding: 5px 20px;
+  width: 100%;
+  margin-bottom: 1px;
+}
+.form {
+  padding: 6px;
+  padding-bottom: 40px;
+  min-height: 400px;
+}
+label {
+  font-size: 14px;
+  color: #333;
+  float: left;
+  width: 130px;
+  padding: 5px 0;
+}
+select {
+  min-width: 150px;
+  height: 30px;
+  border: 1px solid #ccc;
+}
+.admin-edit-project .form input,
+.admin-edit-project .form textarea {
+  padding: 5px 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+}
+#longdesc {
+  width: 900px;
+}
+ul#fileMenu {
+}
+ul#fileMenu li {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 2px;
+  width: 150px;
+  height: 30px;
+  background: #333;
+}
+ul#fileMenu li a {
+  color: #ccc;
+  padding: 4px 10px;
+  font-size: 14px;
+  display: block;
+}
+ul#fileMenu li a:hover {
+  color: #fff;
+  background: #000;
+}
+#projects #projects,
+#categories #categories,
+#properties #properties,
+#services #services {
+  color: #fff;
+  background: #000;
+}
+.form input,
+select {
+  width: 250px;
+}
+.form textarea {
+  width: 600px;
+}
+.select {
+  padding: 3px;
+}
+.edit-image-wrapper {
+  clear: left;
+  width: 350px;
+  height: 300px;
+  border: 1px solid #ccc;
+}
+.btnLink {
+  background: #ccc;
+  color: #111;
+  padding: 11px 15px;
+  text-align: center;
+  float: left;
+  width: 40px;
+
+  margin-right: 5px;
+}
+.btnLink:hover,
+.btnLink2:hover {
+  background: #333;
+  color: #fff;
+}
+.btnLink2 {
+  background: #ccc;
+  color: #111;
+  padding: 10px 15px;
+  text-align: center;
+  float: left;
+  min-width: 50px;
+  margin-right: 5px;
+  border: none;
+  height: 44px;
+  font-size: 14px;
+}
+.btnLinkActive {
+  background: transparent;
+  color: #111;
+  padding: 10px 15px;
+  text-align: center;
+  float: left;
+  width: 50px;
+  margin-right: 5px;
+}
+.adminContent .btn2 {
+  float: left;
+  padding: 10px;
+  margin-right: 10px;
+  width: 80px;
+}
+
+#btnDel {
+  background: rgb(151, 33, 33);
+  color: #fff;
+}
+.adminContent #edit #edit,
+.adminContent #list #list,
+.adminContent #add #add {
+  background: #fff;
+  color: #111;
+}
+h2,
+h3,
+h4,
+h5 {
+  font-weight: normal;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+ul li {
+  padding: 5px 0;
+}
+a,
+a:hover {
+  text-decoration: none;
+  color: #111;
+  font-size: 16px;
+}
+.pull-right {
+  float: right;
+}
+.form-group {
+  clear: left;
+}
+.form-wrapper {
+  width: 400px;
+  height: 500px;
+  background: rgb(240, 235, 235);
+  padding: 50px;
+  margin: 0 20%;
+}
+.has-error {
+  color: red;
+}
