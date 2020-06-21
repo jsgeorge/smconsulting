@@ -5,11 +5,16 @@ import ContactForm from "../contacts/contactform";
 
 const ListingsPage = ({ match }) => {
   useEffect(() => {
-    console.log("listings show=", match.params.show);
+    console.log(
+      "listings show=",
+      match.params.show,
+      "srch=",
+      match.params.srch
+    );
   }, []);
 
   return (
-    <div id="listing">
+    <div className="page-wrapper" id="top">
       <section className="container-fluid content-section pageHeader">
         <div className="container">
           <div className="row">
@@ -22,14 +27,18 @@ const ListingsPage = ({ match }) => {
                 {" "}
                 <Link to="/products">products</Link>
               </li>
-              <li>{match.params.category}</li>
+              <li>
+                {match.params.category
+                  ? match.params.category
+                  : match.params.srch}
+              </li>
             </ol>
           </div>
         </div>
       </section>
 
-      <section class="container-fluid content-section" id="latestproducts">
-        <div class="container">
+      <section className="container-fluid content-section" id="latestproducts">
+        <div className="container">
           {match.params.category ? (
             <ProductList
               show={match.params.show}
@@ -37,7 +46,16 @@ const ListingsPage = ({ match }) => {
               id={match.params.id}
             />
           ) : (
-            <ProductList show={match.params.show} />
+            <span>
+              {match.params.show == "filterproducts" && match.params.srch ? (
+                <ProductList
+                  show={match.params.show}
+                  srch={match.params.srch}
+                />
+              ) : (
+                <ProductList show={match.params.show} />
+              )}
+            </span>
           )}
         </div>
         <div className="row" />

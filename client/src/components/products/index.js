@@ -3,13 +3,14 @@ import axios from "axios";
 import { ProductContext } from "../../context/product-context";
 import ProjectItem from "./item";
 import { Link } from "react-router-dom";
-export default function ProductsList({ show, category, id }) {
+
+export default function ProductsList({ show, category, id, srch }) {
   const [error, setError] = useState("");
   const { products, setproducts } = useContext(ProductContext);
   const [prods, setprods] = useState([]);
   const { header, setHeader } = useState("");
+
   useEffect(() => {
-    console.log("products list show=", show);
     let limit = {};
     if (show && show == "latestproducts") limit = { limit: 6 };
     if (show && show == "gallery") limit = { limit: 6 };
@@ -20,7 +21,7 @@ export default function ProductsList({ show, category, id }) {
     if (show && show == "featured") limit = { limit: 10 };
     if (!show) limit = { limit: 20 };
     let filters = [];
-    console.log("ctgryid", category, id);
+    //console.log("ctgryid", category, id);
     const fetchData = async () => {
       if (show == "featured") {
         filters = { filters: [{ featured: true }] };
@@ -40,6 +41,21 @@ export default function ProductsList({ show, category, id }) {
       } else if (show == "filterproducts" && category) {
         filters = { filters: [{ category: id }] };
         console.log("filters", filters);
+        try {
+          const response = await axios
+            .post("/products/view", filters)
+            .then((res) => {
+              setprods(res.data.articles);
+            })
+            .catch((err) => {
+              setError("Error could not retrive products Network error");
+              console.log(err);
+            });
+        } catch (error) {
+          setError("Error could not retrive products. Netwoerk error");
+        }
+      } else if (show == "filterproducts" && srch) {
+        filters = { filters: [{ name: srch }] };
         try {
           const response = await axios
             .post("/products/view", filters)

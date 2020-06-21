@@ -56,7 +56,7 @@ const AdminProductForm = ({ id }) => {
   const validData = () => {
     let errs = {};
     setErrors({});
-    const { name, category } = edited;
+    const { name, category, description, longdesc } = edited;
     if (!name) {
       errs.name = "Inalid/Missing iem name";
     }
@@ -91,7 +91,7 @@ const AdminProductForm = ({ id }) => {
         name: edited.name,
         category: edited.category,
         description: edited.description,
-
+        longdesc: edited.longdesc,
         images: edited.images,
       };
 
@@ -142,19 +142,19 @@ const AdminProductForm = ({ id }) => {
     return <Redirect to={`/admin/products/${id}/detail`} />;
   }
 
-  //if (!edited) return <div>Unable to retrieve edit product document</div>;
+  if (!edited) return <div>Unable to retrieve edit product document</div>;
   return (
     <div className="admin-edit-project">
       <div className="form">
         {formError ? <div className="has-error">{formError}</div> : null}
         {error ? <div className="has-error">{error}</div> : null}
         <div className="row">
-          <div className="col-md-6">
+          <div className="col col-500">
             <div className={classnames("form-group", { "has-error": errors })}>
               {errors.name ? (
                 <span className="help-block">{errors.name}</span>
               ) : (
-                <label>product Name</label>
+                <label>Product Name</label>
               )}
 
               <input
@@ -162,9 +162,12 @@ const AdminProductForm = ({ id }) => {
                 type="text"
                 value={edited.name}
                 onChange={handleChange}
+                style={{ color: "#111" }}
               />
             </div>
             <SelectCategories
+              label="Product Category"
+              formtype="form-group"
               category={category}
               setcategory={setcategory}
               editctgry={edited.category}
@@ -178,18 +181,18 @@ const AdminProductForm = ({ id }) => {
                 className="form-control2"
                 value={edited.description}
                 onChange={handleChange}
-                rows="10"
+                rows="5"
               />
             </div>
           </div>
-          <div className="col-md-5 pull-right">
+          <div className="col col-500">
             <div className="form-group">
               <label>product Image</label>
               <br />
               {edited.images &&
               edited.images.length > 0 &&
               edited.images[0].url ? (
-                <img src={edited.images[0].url} id="img_lrg" alt="No Image" />
+                <img src={edited.images[0].url} id="img_sm" alt="No Image" />
               ) : (
                 <span className="has-error">NO Image</span>
               )}
@@ -205,16 +208,26 @@ const AdminProductForm = ({ id }) => {
             </div>
           </div>
         </div>
-        <div className="row">
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => onSubmit()}
-            style={{ clear: "left" }}
-          >
-            Submit
-          </button>
+        <div>
+          <div className="form-group longdesc">
+            <label>Long Description</label>
+            <textarea
+              name="longdesc"
+              className="form-control"
+              value={edited.longdesc}
+              onChange={handleChange}
+              rows="15"
+            />
+          </div>
         </div>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => onSubmit()}
+          style={{ clear: "left" }}
+        >
+          Submit
+        </button>
       </div>
     </div>
   );

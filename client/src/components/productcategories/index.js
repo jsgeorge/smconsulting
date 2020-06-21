@@ -41,11 +41,10 @@ const ProductCategoryList = () => {
           <Link to={`/listings/filterproducts/all`}>Show All</Link>
           {"  /  "}
           {productcategories.map((c) => (
-            <span>
+            <span key={c._id}>
               <Link
                 style={{ margin: "0 10px", color: "green" }}
                 to={`/listings/filterproducts/${c.name}/${c._id}`}
-                key={c._id}
               >
                 {c.name}
               </Link>

@@ -16,7 +16,6 @@ router.post("/add", (req, res) => {
     images: req.body.images,
   };
   // newProduct = req.body;
-  console.log(newProduct);
   const product = new Product(newProduct);
   product.save((err, doc) => {
     if (err) {
@@ -39,7 +38,6 @@ router.get("/", (req, res) => {
 });
 
 router.post("/view", (req, res) => {
-  console.log("/Products/view");
   let findArgs = {};
   if (req.body.filters) {
     if (req.body.filters[0].category) {
@@ -51,7 +49,6 @@ router.post("/view", (req, res) => {
       findArgs = { _id: { $regex: "/*" + req.body.filters[0].id + "/*" } };
     } else findArgs = req.body.filters[0];
   }
-  console.log("findArgs", findArgs);
   let order = "desc";
   let sortBy = "createdAt";
   let limit = req.body.limit;
@@ -69,7 +66,6 @@ router.post("/view", (req, res) => {
 });
 
 router.get("/articles", (req, res) => {
-  console.log("/products/articles");
   let order = "desc";
   let sortBy = "createdAt";
 
@@ -128,9 +124,6 @@ router.get("/article", (req, res) => {
 });
 
 router.post("/update", (req, res) => {
-  console.log("/products/update");
-  console.log("id", req.query.id);
-  console.log(req.body);
   Product.findOneAndUpdate(
     { _id: req.query.id },
     { $set: req.body },
@@ -145,9 +138,6 @@ router.post("/update", (req, res) => {
         return res.json({ editSuccess: false });
       }
       if (doc) {
-        console.log("found doc");
-        console.log(doc);
-        console.log("Product updated successfully");
         res.status(200).json({
           editSuccess: true,
         });
@@ -156,8 +146,6 @@ router.post("/update", (req, res) => {
   );
 });
 router.post("/feature", (req, res) => {
-  console.log("pojects/feature id", req.query.id);
-  console.log(req.body);
   Product.findOneAndUpdate(
     { _id: req.query.id },
     { $set: req.body },
@@ -174,7 +162,6 @@ router.post("/feature", (req, res) => {
   );
 });
 router.delete("/", (req, res) => {
-  console.log(req.query.id);
   Product.deleteOne({ _id: req.query.id }, (err, doc) => {
     if (err) {
       console.log(err);
@@ -191,8 +178,6 @@ router.post("/uploadimage", formidable(), (req, res) => {
   cloudinary.uploader.upload(
     req.files.file.path,
     (result) => {
-      console.log(result);
-      console.log("url", result.url);
       res.status(200).send({
         public_id: result.public_id,
         url: result.url,

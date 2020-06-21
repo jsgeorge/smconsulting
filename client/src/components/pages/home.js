@@ -18,19 +18,19 @@ const HomePage = () => {
   });
   return (
     <div className="page-wrapper" id="top">
-      <section class="intro">
-        <div class="container-fluid">
-          <div class="row" slyle={{ margin: "0", padding: "0" }}>
+      <section className="intro">
+        <div className="container-fluid">
+          <div className="row" slyle={{ margin: "0", padding: "0" }}>
             <Banner />
           </div>
         </div>
       </section>
-      <section class="container-fluid content-section" id="about">
-        <div class="container">
-          <div class="row" id="front1">
-            <div class="col-md-4 col-sm-6 aboutBox">
+      <section className="container-fluid content-section" id="about">
+        <div className="container">
+          <div className="row" id="front1">
+            <div className="col-md-4 col-sm-6 aboutBox">
               <Link to="/about">
-                <h2 class="text-center">CONSULTING</h2>
+                <h2>CONSULTING</h2>
                 <img src="images/aboutImg2.png" alt="img" id="img_small" />
                 <p>
                   Be aware that the CSS for these layouts is heavily commented.
@@ -43,9 +43,9 @@ const HomePage = () => {
               </Link>
             </div>
 
-            <div class="col-md-4 col-sm-6 aboutBox">
+            <div className="col-md-4 col-sm-6 aboutBox">
               <Link to="/about">
-                <h2 class="text-center">TECHNOLOGY</h2>
+                <h2 className="text-center">TECHNOLOGY</h2>
                 <img src="images/aboutImg1.png" alt="img" id="img_small" />
 
                 <p>
@@ -59,9 +59,9 @@ const HomePage = () => {
               </Link>
             </div>
 
-            <div class="col-md-4  col-sm-6  aboutBox">
+            <div className="col-md-4  col-sm-6  aboutBox">
               <Link to="/about">
-                <h2 class="text-center">INNOVATION</h2>
+                <h2 className="text-center">INNOVATION</h2>
                 <img src="images/aboutImg3.png" alt="img" id="img_small" />
 
                 <p>
@@ -80,14 +80,14 @@ const HomePage = () => {
         {/*container */}
       </section>{" "}
       {/* end about */}
-      <section class="container-fluid content-section" id="news">
-        <div class="container">
-          <div class="row">
+      <section className="container-fluid content-section" id="news">
+        <div className="container">
+          <div className="row">
             <h1>News</h1>
 
-            <div class="col-md-4  col-sm-4">
+            <div className="col-md-4  col-sm-4">
               <h4>
-                <i class="fa fa-calendar"></i> December 03, 2015
+                <i className="fa fa-calendar"></i> December 03, 2015
               </h4>
               <h3>NEW BUSINESS MODEL FOR YOU BUSINESS</h3>
               <p>
@@ -98,12 +98,16 @@ const HomePage = () => {
                 more about the techniques used in these CSS Layouts, read this
                 article at Adobe's Developer Center{" "}
               </p>
+
+              <Link to="/news/item" className="btnLink3">
+                READ MORE >>
+              </Link>
             </div>
             {/* end col left features*/}
 
-            <div class="col-md-4  col-sm-4">
+            <div className="col-md-4  col-sm-4">
               <h4>
-                <i class="fa fa-calendar"></i> December 02, 2015
+                <i className="fa fa-calendar"></i> December 02, 2015
               </h4>
               <h3>UNIQUE BUSINESS IDEAS</h3>
               <p>
@@ -114,11 +118,14 @@ const HomePage = () => {
                 more about the techniques used in these CSS Layouts, read this
                 article at Adobe's Developer Cen
               </p>
+              <Link to="/news/item" className="btnLink3">
+                READ MORE >>
+              </Link>
             </div>
             {/* end features col img*/}
-            <div class="col-md-4  col-sm-4">
+            <div className="col-md-4  col-sm-4">
               <h4>
-                <i class="fa fa-calendar"></i> December 01, 2015
+                <i className="fa fa-calendar"></i> December 01, 2015
               </h4>
               <h3>LESS IS MORE</h3>
               <p>
@@ -129,6 +136,9 @@ const HomePage = () => {
                 more about the techniques used in these CSS Layouts, read this
                 article at Adobe's Developer Cen
               </p>
+              <Link to="/news/item" className="btnLink3">
+                READ MORE >>
+              </Link>
             </div>
             {/* end features col img*/}
           </div>
@@ -137,13 +147,13 @@ const HomePage = () => {
         {/* end container  */}
       </section>
       <section
-        class="container-fluid content-section text-center"
+        className="container-fluid content-section text-center"
         id="parallax"
         data-speed="6"
         data-type="background"
       >
-        <div class="container">
-          <div class="row">
+        <div className="container">
+          <div className="row">
             <h1>Success!</h1>
             <h4>
               Developing a small company into a successful one may seem
@@ -152,12 +162,12 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      <section class="container-fluid content-section" id="whatwedo">
-        <div class="container">
-          <div class="row">
+      <section className="container-fluid content-section" id="whatwedo">
+        <div className="container">
+          <div className="row">
             <h1>WHAT WE DO</h1>
 
-            <div class="col-md-4  col-sm-4 whatbox">
+            <div className="col-md-4  col-sm-4 whatbox">
               <h4>ESTABLISHING YOUR BRAND</h4>
               <p>
                 Be aware that the CSS for these layouts is heavily commented. If
@@ -168,7 +178,7 @@ const HomePage = () => {
             </div>
             {/* end col left features*/}
 
-            <div class="col-md-4  col-sm-4 whatbox">
+            <div className="col-md-4  col-sm-4 whatbox">
               <h4>CONNECTING WITH YOUR CUSTOMERS</h4>
               <p>
                 Be aware that the CSS for these layouts is heavily commented. If
@@ -178,7 +188,7 @@ const HomePage = () => {
               </p>
             </div>
             {/* end features col img*/}
-            <div class="col-md-4  col-sm-4 whatbox">
+            <div className="col-md-4  col-sm-4 whatbox">
               <h4>MARKETTING STRATEGIES</h4>
               <p>
                 Be aware that the CSS for these layouts is heavily commented. If
@@ -187,7 +197,7 @@ const HomePage = () => {
               </p>
             </div>
             {/* end features col img*/}
-            <div class="col-md-4  col-sm-4 whatbox">
+            <div className="col-md-4  col-sm-4 whatbox">
               <h4>INFORMATION TECHNOLOGY</h4>
               <p>
                 Be aware that the CSS for these layouts is heavily commented. If
@@ -197,7 +207,7 @@ const HomePage = () => {
             </div>
             {/* end col left features*/}
 
-            <div class="col-md-4  col-sm-4 whatbox">
+            <div className="col-md-4  col-sm-4 whatbox">
               <h4>ADVANCED ADVERTISING</h4>
               <p>
                 Be aware that the CSS for these layouts is heavily commented. If
@@ -206,7 +216,7 @@ const HomePage = () => {
               </p>
             </div>
             {/* end features col img*/}
-            <div class="col-md-4  col-sm-4 whatbox">
+            <div className="col-md-4  col-sm-4 whatbox">
               <h4>ESTABLISHING YOUR BUSINESS</h4>
               <p>
                 Be aware that the CSS for these layouts is heavily commented. If
@@ -221,13 +231,13 @@ const HomePage = () => {
         {/*container */}
       </section>{" "}
       {/* end about */}
-      <section class="container-fluid content-section" id="casestudies">
+      <section className="container-fluid content-section" id="casestudies">
         <div className="container">
-          <div class="row">
-            <div class="col-md-6  imgDownload1">
-              <img src="images/index-4.jpg" class="img-responsive" />
+          <div className="row">
+            <div className="col-md-6  imgDownload1">
+              <img src="images/index-4.jpg" className="img-responsive" />
             </div>
-            <div class="col-md-6">
+            <div className="col-md-6">
               <h1>Case studies</h1>
               <h3>
                 LEARN HO TO GIVE YOU COMPANY A SIGNIFICANT IMPACT ON DEVELEPMENT{" "}
@@ -250,13 +260,13 @@ const HomePage = () => {
       </section>{" "}
       {/* end blog */}
       <section
-        class="container-fluid content-section text-center"
+        className="container-fluid content-section text-center"
         id="parallax2"
         data-speed="6"
         data-type="background"
       >
-        <div class="container">
-          <div class="row">
+        <div className="container">
+          <div className="row">
             <h1>Leadership</h1>
             <h4>
               We will build a unique business development strategy based on the
@@ -298,30 +308,28 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      <section class="container-fluid content-section" id="front2">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4 col-sm-6 aboutBox">
+      <section className="container-fluid content-section" id="front2">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-4 col-sm-6 aboutBox">
               <Link to="/about">
                 <img src="images/aboutImg1.png" id="img_small" alt="img" />
-                <h2 class="text-center">OUR PRIORITIES</h2>
+                <h2 className="text-center">OUR PRIORITIES</h2>
                 <p>
                   Be aware that the CSS for these layouts is heavily commented.
                   If you do most of your work in Design view, have a peek at the
                   code to get tips{" "}
                 </p>
                 <p>
-                  <Link to="/item" className="btnLink">
-                    READ MORE >>
-                  </Link>
+                  <span className="btnLink">READ MORE >></span>
                 </p>
               </Link>
             </div>
 
-            <div class="col-md-4 col-sm-6  aboutBox">
+            <div className="col-md-4 col-sm-6  aboutBox">
               <Link to="/about">
                 <img src="images/aboutImg2.png" id="img_small" alt="img" />
-                <h2 class="text-center">PROMOTIONS</h2>
+                <h2 className="text-center">PROMOTIONS</h2>
 
                 <p>
                   Be aware that the CSS for these layouts is heavily commented.
@@ -329,18 +337,16 @@ const HomePage = () => {
                   code to get tips{" "}
                 </p>
                 <p>
-                  <Link to="/item" className="btnLink">
-                    READ MORE >>
-                  </Link>
+                  <span className="btnLink">READ MORE >></span>
                 </p>
               </Link>
             </div>
 
-            <div class="col-md-4  col-sm-6  aboutBox">
+            <div className="col-md-4  col-sm-6  aboutBox">
               <Link to="/about">
                 <img src="images/aboutImg3.png" id="img_small" alt="img" />
 
-                <h2 class="text-center">INNOVATION</h2>
+                <h2 className="text-center">INNOVATION</h2>
 
                 <p>
                   Be aware that the CSS for these layouts is heavily commented.
@@ -348,9 +354,7 @@ const HomePage = () => {
                   code to get tips{" "}
                 </p>
                 <p>
-                  <Link to="/item" className="btnLink">
-                    READ MORE >>
-                  </Link>
+                  <span className="btnLink">READ MORE >></span>
                 </p>
               </Link>
             </div>
@@ -360,13 +364,13 @@ const HomePage = () => {
         {/*container */}
       </section>{" "}
       <section
-        class="container-fluid content-section text-center"
+        className="container-fluid content-section text-center"
         id="parallax6"
         data-speed="6"
         data-type="background"
       >
-        <div class="container">
-          <div class="row">
+        <div className="container">
+          <div className="row">
             <h1>Strategy</h1>
             <h4>
               We will build a unique business development strategy based on the
@@ -375,20 +379,20 @@ const HomePage = () => {
           </div>
         </div>
       </section>{" "}
-      <section class="container-fluid content-section" id="latestproducts">
-        <div class="container">
+      <section className="container-fluid content-section" id="latestproducts">
+        <div className="container">
           <h3>Our Products</h3>
           <ProductList show="gallery" />
         </div>
       </section>
       <section
-        class="container-fluid content-section text-center"
+        className="container-fluid content-section text-center"
         id="parallax7"
         data-speed="6"
         data-type="background"
       >
-        <div class="container">
-          <div class="row">
+        <div className="container">
+          <div className="row">
             <h1>Business Growth</h1>
             <h4>
               We will build a unique business development strategy based on the
@@ -397,31 +401,31 @@ const HomePage = () => {
           </div>
         </div>
       </section>{" "}
-      <section class="container-fluid content-section" id="testimonials">
-        <div class="row">
-          <div class="container">
-            <div class="col-md-6 col-sm-6 ">
+      <section className="container-fluid content-section" id="testimonials">
+        <div className="row">
+          <div className="container">
+            <div className="col-md-6 col-sm-6 ">
               <p>
-                <i class="fa fa-quote-left fa-4x"></i>
+                <i className="fa fa-quote-left fa-4x"></i>
                 Be aware that the CSS for these layouts is heavily commented. If
                 you do most of your work in Design view, have a peek at the code
                 to get tips on working with the CSS for the fixed layouts. You
                 can remove these comments before you launch your site. To learn
                 more about the techniques used in these CSS Layouts, read this
                 article at Adobe's Developer Cen
-                <i class="fa fa-quote-right fa-4x"></i>
+                <i className="fa fa-quote-right fa-4x"></i>
               </p>
               <h3>Jason Smith, Lockeed Corpoation</h3>
             </div>
-            <div class="col-md-6 col-sm-6">
+            <div className="col-md-6 col-sm-6">
               <p>
-                <i class="fa fa-quote-left fa-4x"></i>Be aware that the CSS for
-                these layouts is heavily commented. If you do most of your work
-                in Design view, have a peek at the code to get tips on working
-                with the CSS for the fixed layouts. You can remove these
+                <i className="fa fa-quote-left fa-4x"></i>Be aware that the CSS
+                for these layouts is heavily commented. If you do most of your
+                work in Design view, have a peek at the code to get tips on
+                working with the CSS for the fixed layouts. You can remove these
                 comments before you launch your site. To learn more about the
                 techniques used in these CSS Layouts, read this article at
-                Adobe's Developer Cen<i class="fa fa-quote-right fa-4x"></i>
+                Adobe's Developer Cen<i className="fa fa-quote-right fa-4x"></i>
               </p>
               <h3>Jason Smith, Lockeed Corpoation</h3>
             </div>
@@ -430,9 +434,9 @@ const HomePage = () => {
         {/* end container --
 			</div>{/* end row */}
       </section>{" "}
-      <section class="container-fluid content-section" id="clients">
-        <div class="container">
-          <div class="row"></div>
+      <section className="container-fluid content-section" id="clients">
+        <div className="container">
+          <div className="row"></div>
         </div>
       </section>
       <ContactForm />

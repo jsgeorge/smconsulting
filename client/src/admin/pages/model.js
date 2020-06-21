@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 //import AdminProjectsList from "../comonents/projects";
 const AdminModelPage = () => {
   return (
-    <div className="body" id="projects">
+    <div className="bodyadmin" id="products">
       <div className="header">
         <div className="logo-div">
           <h2>ARCHITECTO admin</h2>

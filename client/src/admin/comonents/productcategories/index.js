@@ -66,16 +66,18 @@ export default function AdminProductCategoriesList() {
               return (
                 <div className="long_pod_admin2" key={p._id}>
                   {editing === p._id ? (
-                    <input
-                      type="text"
-                      name="name"
-                      value={edited.name}
-                      onChange={handleChange}
-                    />
+                    <div className="col ctgryname">
+                      <input
+                        type="text"
+                        name="name"
+                        value={edited.name}
+                        onChange={handleChange}
+                      />
+                    </div>
                   ) : (
-                    <>{p.name}</>
+                    <div className="col ctgryname">{p.name}</div>
                   )}
-                  <span style={{ float: "right" }}>
+                  <span>
                     <button onClick={() => toggleEdit(p)}>
                       {editing === p._id ? "Submit" : "Edit"}{" "}
                     </button>

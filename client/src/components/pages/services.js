@@ -79,7 +79,7 @@ const ServicesPage = () => {
               supportive services they need. Moreover, with the laps of time we
               plan to open new departments and offices in other countries
             </div>
-            <div clssName="col-md-9" id="servcol2">
+            <div className="col-md-9" id="servcol2">
               <ServicesList show={"Other"} col={3} />
             </div>
           </div>

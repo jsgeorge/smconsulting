@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 
 router.post("/", (req, res) => {
   const ServiceCategory = new ServiceCategory(req.body);
-  console.log(ServiceCategory);
   ServiceCategory.save((err, doc) => {
     if (err) return res.json({ success: false, err });
     res.status(200).json({
@@ -15,7 +14,6 @@ router.post("/", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  console.log("/servicecategories");
   ServiceCategory.find({})
     .sort([["name", "asc"]])
     .exec((err, servcategories) => {

@@ -7,7 +7,7 @@ import AdminCommandLine from "../layout/cmdline";
 import AdminProductsList from "../comonents/products";
 const AdminProductsSearch = ({ match }) => {
   return (
-    <div className="body" id="products">
+    <div className="bodyadmin" id="products">
       <AdminHeader />
       <div className="row">
         <AdminSidebar />

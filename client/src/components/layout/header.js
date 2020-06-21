@@ -1,8 +1,19 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
 const Header = () => {
+  const [srchText, setSrchText] = useState("");
+  const [getProducts, setGetProducts] = useState(false);
+
+  const onHandleSearch = (e) => {
+    e.preventDefault();
+    if (srchText) {
+      setGetProducts(true);
+    }
+  };
+  if (getProducts)
+    return <Redirect to={`/listings/filterproducts/${srchText}`} />;
   return (
     <nav className="navbar navbar-default">
       <div className="container-fluid">
@@ -56,14 +67,17 @@ const Header = () => {
         </div>
 
         <div className="srchForm" id="srchForm">
-          <form method="get" action="search.php">
+          <form onSubmit={onHandleSearch}>
             <input
               type="text"
               name="srchtxt"
               id="srchtxt"
               placeholder="Search"
+              onChange={(e) => setSrchText(e.target.value)}
             />
-            <input type="submit" id="srchbtn" value="GO" />
+            <button type="submit" id="srchbtn">
+              Go
+            </button>
           </form>
         </div>
       </div>

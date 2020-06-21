@@ -11,7 +11,6 @@ const ServicesList = ({ show, col }) => {
   const [error, setError] = useState("");
   const [cols, setcols] = useState("");
   useEffect(() => {
-    console.log(col);
     switch (col) {
       case 4:
         setcols("col-md-3");
@@ -27,7 +26,6 @@ const ServicesList = ({ show, col }) => {
       default:
         setcols("col-md-4");
     }
-    console.log(cols);
   });
   const fetchData = async () => {
     let filters = [];
@@ -44,10 +42,6 @@ const ServicesList = ({ show, col }) => {
       });
   };
   useEffect(() => {
-    console.log(show);
-    // if (show) {
-    //;
-    //getServiceCtgryId(show);
     fetchData();
   }, []);
   const renderCardImage = (images, id) => {

@@ -197,12 +197,12 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
-      <section class="container-fluid content-section" id="ourservices">
-        <div class="container">
+      <section className="container-fluid content-section" id="ourservices">
+        <div className="container">
           <h1>Our Advantages</h1>
           <div className="row">
             {/* <ServicesList show={"featured"} /> */}
-            <div class="col-md-4" id="service">
+            <div className="col-md-4" id="service">
               <img src="images/advantages1.png" id="img_med" alt="img" />
 
               <h3>OPPORTUINITES WITH INCREDIBLE MONEY MAKING POTENTIAL</h3>
@@ -218,7 +218,7 @@ const AboutPage = () => {
                 Show More
               </Link>
             </div>
-            <div class="col-md-4" id="service">
+            <div className="col-md-4" id="service">
               <img src="images/advantages2.png" id="img_med" alt="img" />
 
               <h3>A WIDE RANGE OF GLOBAL BUSINESS INFORMATION</h3>
@@ -234,7 +234,7 @@ const AboutPage = () => {
                 Show More
               </Link>
             </div>
-            <div class="col-md-4" id="service">
+            <div className="col-md-4" id="service">
               <img src="images/advantages3.png" id="img_med" alt="img" />
 
               <h3>OPPORTUINITES WITH INCREDIBLE MONEY MAKING POTENTIAL</h3>

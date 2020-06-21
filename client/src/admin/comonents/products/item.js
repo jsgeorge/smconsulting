@@ -11,39 +11,36 @@ const AdminProductItem = ({ product }) => {
   const renderCardImage = (images) => {
     if (images.length > 0) return images[0].url; //images[0].url;
   };
-  const { _id, name, category, images } = product;
+  const { _id, name, category, description, images } = product;
 
   return (
     <div className="long_pod_admin">
-      <div className="row">
-        <div className="col-md-3" style={{ width: "140px" }}>
-          {_id}
-        </div>
-        <div className="col-md-3" style={{ width: "360px" }}>
-          {name}
-        </div>
-        <div className="col-md-2">
-          {category ? (
-            <span>
-              <AdminDetailProdCategory id={category} />
-            </span>
-          ) : (
-            <span className="has-error">Not selected</span>
-          )}
-        </div>
-
-        <div className="col-md-3 paddiing">
-          {images && images.length > 0 && images[0].url ? (
-            <img src={images[0].url} id="img_small" />
-          ) : (
-            "no image"
-          )}
-        </div>
-        <div className="col-md-1">
-          <Link to={`/admin/products/${_id}/detail`} className="btnLink">
-            Edit
-          </Link>
-        </div>
+      <div className="col id">{_id}</div>
+      <div className="col name">{name}</div>
+      <div className="col ctgry">
+        {category ? (
+          <span>
+            <AdminDetailProdCategory id={category} />
+          </span>
+        ) : (
+          <span className="has-error">Not selected</span>
+        )}
+      </div>
+      <div className="col desc">{description}</div>
+      <div className="col img">
+        {images && images.length > 0 && images[0].url ? (
+          <img src={images[0].url} id="img_smalladmin" />
+        ) : (
+          "no image"
+        )}
+      </div>
+      <div className="col cmds">
+        <Link to={`/admin/products/${_id}/detail`} className="btnLinkadmin">
+          View
+        </Link>
+        <Link to={`/admin/products/${_id}/edit`} className="btnLinkadmin">
+          Edit
+        </Link>
       </div>
     </div>
   );

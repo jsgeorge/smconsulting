@@ -3,6 +3,8 @@ import "../../admin-styles.css";
 import AdminHeader from "../layout/header";
 import { Link, Redirect } from "react-router-dom";
 import { UserContext } from "../../context/user-context";
+import { AuthContext } from "../../context/auth-context";
+
 import axios from "axios";
 import classnames from "classnames";
 
@@ -11,6 +13,7 @@ const AdminLogin = ({ showLogin, setShowLogin, showReg, setShowReg }) => {
   const [password, setPassword] = useState("");
   //const [errMsg, setErrMsg] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const { isloggedin, setisloggedin } = useContext(AuthContext);
   const { user, setUser } = useContext(UserContext);
   const [errors, setErrors] = useState({});
 
@@ -28,6 +31,7 @@ const AdminLogin = ({ showLogin, setShowLogin, showReg, setShowReg }) => {
 
     if (!username || !password) {
       setErrors(errs);
+
       return false;
     } else {
       return true;
@@ -35,8 +39,6 @@ const AdminLogin = ({ showLogin, setShowLogin, showReg, setShowReg }) => {
   };
 
   const signinUser = async () => {
-    setErrors({});
-    console.log(validData());
     if (validData()) {
       let userData = {
         username: username,
@@ -52,7 +54,8 @@ const AdminLogin = ({ showLogin, setShowLogin, showReg, setShowReg }) => {
         } else {
           setUser(response.data);
           localStorage.setItem("jwtToken", response.data.token);
-          setRedirect(true);
+          setisloggedin(true);
+          // setRedirect(true);
         }
       } catch (error) {
         console.log("Invalid username and/or passowrd", error);
@@ -77,54 +80,71 @@ const AdminLogin = ({ showLogin, setShowLogin, showReg, setShowReg }) => {
   }
   return (
     <div className="form-wrapper">
-      <div className="logo-div2">
-        <h3>
-          <img src="images/logoadmin.png" />
-        </h3>
-      </div>
-      <h3> User Login</h3>
-      {/* {state && state.message.content && (
+      <div className="form">
+        <div className="logo-div2">
+          <h3>
+            <img src="images/logoadmin.png" />
+            User Login
+          </h3>
+        </div>
+
+        {/* {state && state.message.content && (
               <FlashMessage message={state.message} />
             )} */}
-      {errors.form && <div className="has-error">{errors.form}</div>}
-      <div className={classnames("form-group", { "has-error": errors })}>
-        {errors.username && (
-          <span className="help-block">{errors.username}</span>
-        )}
-        <label>Username</label>
-        <input
-          className="form-control"
-          aria-label="Enter your task"
-          data-testid="add-task-content"
-          type="username"
-          placeholder="Username"
-          onChange={(e) => setUsername(e.target.value)}
-        />
+        {errors.form && <div className="has-error">{errors.form}</div>}
+        <div
+          className={classnames("form-group", {
+            "has-error": errors.username,
+          })}
+        >
+          {errors.username ? (
+            <span className="help-block">{errors.username}</span>
+          ) : (
+            <span className="error-space" />
+          )}
+          <label>Username</label>
+          <input
+            className="form-control"
+            aria-label="Enter your task"
+            data-testid="add-task-content"
+            type="username"
+            placeholder="Username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div
+          className={classnames("form-group", {
+            "has-error": errors.password,
+          })}
+        >
+          {errors.password ? (
+            <span className="help-block">{errors.password}</span>
+          ) : (
+            <span className="error-space" />
+          )}
+          <label>Password</label>
+          <input
+            className="form-control"
+            aria-label="Enter your task"
+            data-testid="add-task-content"
+            type="password"
+            value={password}
+            placeholder="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div className="form-cmds">
+          <button onClick={() => handleShowReg()}>Swhitch to Register</button>
+          <button
+            type="button"
+            className="btn btn-danger btn-sm"
+            data-testid="add-shout"
+            onClick={() => onSubmit()}
+          >
+            Login
+          </button>
+        </div>
       </div>
-      <div className={classnames("form-group", { "has-error": errors })}>
-        {errors.password && (
-          <span className="help-block">{errors.password}</span>
-        )}
-        <label>Password</label>
-        <input
-          className="form-control"
-          aria-label="Enter your task"
-          data-testid="add-task-content"
-          type="password"
-          value={password}
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <button
-        type="button"
-        className="btn btn-primary btn-sm"
-        data-testid="add-shout"
-        onClick={() => onSubmit()}
-      >
-        Login
-      </button>
-      <button onClick={() => handleShowReg()}>Register</button>
     </div>
   );
 };

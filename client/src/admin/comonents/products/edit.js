@@ -3,8 +3,6 @@ import React, { useState, useEffect, useContext } from "react";
 // import { ProjectContext } from "../../../context/product-context";
 import AdminHeader from "../../layout/header";
 import AdminSidebar from "../../layout/sidebar";
-
-import AdminDetailProdCategory from "../productcategories/detailcategory";
 import AdminPoductForm from "./form";
 import "../../../admin-styles.css";
 import { Link } from "react-router-dom";
@@ -21,7 +19,7 @@ const AdminProductEdit = ({ match }) => {
       </div>
     );
   return (
-    <div className="body" id="projects">
+    <div className="bodyadmin" id="projects">
       <AdminHeader />
       <div className="row">
         <AdminSidebar />
@@ -29,24 +27,27 @@ const AdminProductEdit = ({ match }) => {
           <h3>Projects</h3>
 
           <div className="cmd-line">
-            <Link to="/admin" className="btnLink">
+            <Link to="/admin" className="btnLinkadmin">
               Close
             </Link>
-            <Link to="/admin/products/" className="btnLink" id="list">
+            <Link to="/admin/products/" className="btnLinkadmin" id="list">
               List
             </Link>
             <Link
               to={`/admin/products/${match.params.id}/detail`}
-              className="btnLink"
+              className="btnLinkadmin"
             >
               Cancel
             </Link>
-            <span className="btnLink">Edit</span>
-            <button onClick={onDelete} className="btnLink2" id="btnDel">
+            <span className="btnLinkActive" id="list">
+              Edit
+            </span>
+            <button onClick={onDelete} className="btn2" id="btnDel">
               Delete
             </button>
           </div>
           <h4>Edit Project</h4>
+          <h5>PROD# {match.params.id}</h5>
           {<AdminPoductForm id={match.params.id} />}
         </div>
       </div>

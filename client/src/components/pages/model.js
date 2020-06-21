@@ -33,8 +33,8 @@ const DetailPage = ({ match }) => {
         </div>
       </section>
 
-      <section class="container-fluid content-section" id="item-detail">
-        <div class="container">
+      <section className="container-fluid content-section" id="item-detail">
+        <div className="container">
           {show == "products" ? <ProductDetail id={id} /> : null}
           {show == "services" ? <ServiceDetail id={id} /> : null}
           <div className="row"></div>

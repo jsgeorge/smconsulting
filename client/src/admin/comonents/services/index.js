@@ -90,106 +90,105 @@ export default function AdminServicesList() {
       {services ? (
         <div>
           {formError ? <div className="has-error">{formError}</div> : null}
-          <table>
-            <tr>
-              <th width="50">Service</th>
-              <th width="200">Category</th>
-              <th width="200">Description</th>
-              <th width="200">Image</th>
-            </tr>
-            {services.map((p) => {
-              return (
-                <tr key={p._id}>
+          <div className="cols_head">
+            <div className="col id">ID</div>
+            <div className="col name">Service</div>
+            <div className="col ctgry">Category</div>
+            <div className="col desc">Descrtiption</div>
+            <div className="col img">Image</div>
+            <div className="col cmds">Cmds</div>
+          </div>
+
+          {services.map((p) => {
+            return (
+              <div className="long_pod_admin" key={p._id}>
+                {editing === p._id ? (
+                  <span>
+                    <div className="col id">{p._id}</div>
+                    <div className="col name">
+                      <input
+                        type="text"
+                        name="name"
+                        id="input"
+                        value={edited.name}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="col ctgry">
+                      <SelectProperties
+                        servicecategory={servicecategory}
+                        setservicecategory={setservicecategory}
+                        editctgry={edited.category}
+                        errors={errors.category}
+                      />
+                    </div>
+                    <div className="col desc">
+                      <textarea
+                        type="text"
+                        name="description"
+                        value={edited.description}
+                        onChange={handleChange}
+                        rows={5}
+                      />
+                    </div>
+                    <div className="col img">
+                      {edited.images &&
+                      edited.images.length > 0 &&
+                      edited.images[0].url ? (
+                        <img src={edited.images[0].url} id="img_smalladmin" />
+                      ) : (
+                        <img
+                          src={"/images/noimage.png"}
+                          id="img_smalladmin"
+                          alt="img"
+                        />
+                      )}
+                      <FileUpload
+                        images={images}
+                        setImages={setImages}
+                        reset={formSuccess}
+                      />{" "}
+                    </div>
+                  </span>
+                ) : (
+                  <span>
+                    <div className="col id">{p._id}</div>
+                    <div className="col name">{p.name}</div>
+                    <div className="col ctgry">
+                      <AdminDetailServCategory id={p.category} />
+                    </div>
+                    <div className="col desc">
+                      {p.description ? (
+                        p.description
+                      ) : (
+                        <span className="has-error">not enterd</span>
+                      )}
+                    </div>
+                    <div className="col img">
+                      {p.images && p.images.length > 0 && p.images[0].url ? (
+                        <img src={p.images[0].url} id="img_smalladmin" />
+                      ) : (
+                        <img
+                          src={"/images/noimage.png"}
+                          id="img_smalladmin"
+                          alt="img"
+                        />
+                      )}
+                    </div>
+                  </span>
+                )}
+                <div className="col cmds">
+                  <button onClick={() => toggleEdit(p)}>
+                    {editing === p._id ? "Submit" : "Edit"}{" "}
+                  </button>
                   {editing === p._id ? (
-                    <span>
-                      <td>
-                        <input
-                          type="text"
-                          name="name"
-                          id="input"
-                          value={edited.name}
-                          onChange={handleChange}
-                        />
-                      </td>
-                      <td>
-                        <SelectProperties
-                          servicecategory={servicecategory}
-                          setservicecategory={setservicecategory}
-                          editctgry={edited.category}
-                          errors={errors.category}
-                        />
-                      </td>
-                      <td>
-                        <textarea
-                          type="text"
-                          name="description"
-                          value={edited.description}
-                          onChange={handleChange}
-                          rows={5}
-                        />
-                      </td>
-                      <td>
-                        {edited.images &&
-                        edited.images.length > 0 &&
-                        edited.images[0].url ? (
-                          <img
-                            src={edited.images[0].url}
-                            id="img_small"
-                            style={{ marginLeft: "30px" }}
-                          />
-                        ) : (
-                          <img
-                            src={"/images/noimage.png"}
-                            id="img_small"
-                            alt="img"
-                          />
-                        )}
-                        <FileUpload
-                          images={images}
-                          setImages={setImages}
-                          reset={formSuccess}
-                        />{" "}
-                      </td>
-                    </span>
-                  ) : (
-                    <span>
-                      <td width={450}>{p.name}</td>
-                      <td width={300}>
-                        <AdminDetailServCategory id={p.category} />
-                      </td>
-                      <td width={300}>
-                        {p.description ? (
-                          p.description
-                        ) : (
-                          <span className="has-error">not enterd</span>
-                        )}
-                      </td>
-                      <td width={200}>
-                        {p.images && p.images.length > 0 && p.images[0].url ? (
-                          <img src={p.images[0].url} id="img_small2" />
-                        ) : (
-                          <img
-                            src={"/images/noimage.png"}
-                            id="img_small2"
-                            alt="img"
-                          />
-                        )}
-                      </td>
-                    </span>
-                  )}
-                  <td>
-                    <button onClick={() => toggleEdit(p)}>
-                      {editing === p._id ? "Submit" : "Edit"}{" "}
-                    </button>
-                    {editing === p._id ? (
-                      <button onClick={() => setEditing(0)}>Cancel</button>
-                    ) : null}
-                    <button onClick={() => deleteService(p._id)}>Delete</button>
-                  </td>
-                </tr>
-              );
-            })}
-          </table>
+                    <button onClick={() => setEditing(0)}>Cancel</button>
+                  ) : null}
+                  <button onClick={() => deleteService(p._id)}>Delete</button>
+                </div>
+              </div>
+            );
+          })}
         </div>
       ) : (
         <p>NO Current services</p>

@@ -13,10 +13,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/id", (req, res) => {
-  // console.log("get user query by id");
   const uid = req.query.id; //"5e87a4aeec5ce0255c8c4b98";
-  // console.log("uid", uid);
-
   if (uid) {
     User.findOne({ _id: mongoose.Types.ObjectId(uid) }).exec((err, user) => {
       if (err) {
@@ -32,12 +29,6 @@ router.get("/id", (req, res) => {
         name: user.name,
         email: user.email,
       };
-      // console.log(
-      //   uid,
-      //   tweetAuthor.name,
-      //   tweetAuthor.lastname,
-      //   tweetAuthor.username
-      // );
       res.status(200).json({ userdata: tweetAuthor });
     });
   } else {
@@ -46,9 +37,7 @@ router.get("/id", (req, res) => {
   }
 });
 router.post("/id", (req, res) => {
-  //console.log("post user body by id");
   const uid = req.body.id; //"5e87a4aeec5ce0255c8c4b98";
-  //console.log("uid", uid);
   if (uid) {
     User.findOne({ _id: mongoose.Types.ObjectId(uid) }).exec((err, user) => {
       if (err) {
@@ -62,7 +51,6 @@ router.post("/id", (req, res) => {
         email: user.email,
         username: user.username,
       };
-      // console.log(currentUser.lastname);
       res.status(200).json({ user: currentUser });
     });
   } else {
@@ -78,9 +66,8 @@ router.post("/", (req, res) => {
     username: req.body.username,
     name: req.body.name,
     lastname: req.body.lastname,
-    role: 1,
+    role: req.body.role,
   });
-  //console.log(user);
   User.findOne({ email: req.body.username }, function (err, existingUser) {
     if (err) {
       console.log("ERROR", err);

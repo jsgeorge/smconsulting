@@ -23,8 +23,8 @@ const ProductsPage = () => {
         </div>
       </section>
 
-      <section class="container-fluid content-section" id="latestProducts">
-        <div class="container">
+      <section className="container-fluid content-section" id="latestproducts">
+        <div className="container">
           <div className="pageHeader2">
             <ProductCategoryList />
           </div>

@@ -60,7 +60,7 @@ const AdminCategoriesPage = () => {
   };
 
   return (
-    <div className="body" id="categories">
+    <div className="bodyadmin" id="prodctgry">
       <AdminHeader />
       <div className="row">
         <AdminSidebar />

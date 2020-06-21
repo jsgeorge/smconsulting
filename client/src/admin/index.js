@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "../admin-styles.css";
 import { Link, Redirect } from "react-router-dom";
 //
-import { GlobalContext } from "../context/global-settings-context";
+import { AuthContext } from "../context/auth-context";
 import { UserContext } from "../context/user-context";
 import axios from "axios";
 import "../admin-styles.css";
@@ -14,40 +14,46 @@ import AdminRegister from "./auth/register";
 import Dashboard from "./dashboard";
 
 const Admin = () => {
-  const { globalsettings, setglobalsettings } = useContext(GlobalContext);
+  const { isloggedin, setisloggedin, isadmin, setisadmin } = useContext(
+    AuthContext
+  );
   const [showLogin, setShowLogin] = useState(true);
   const [showReg, setShowReg] = useState(false);
   const [margin, setmargin] = useState(0);
+
   useEffect(() => {
-    setglobalsettings({ isAdmin: true });
-  }, []);
-  if (!localStorage.jwtToken)
-    return (
-      <div className="body" id="nomargin">
-        {localStorage.jwtToken ? <AdminHeader /> : null}
-        {showLogin ? (
-          <AdminLogin
-            showLogin={showLogin}
-            setShowLogin={setShowLogin}
-            showReg={showReg}
-            setShowReg={setShowReg}
-          />
-        ) : null}
-        {showReg ? (
-          <AdminRegister
-            showLogin={showLogin}
-            setShowLogin={setShowLogin}
-            showReg={showReg}
-            setShowReg={setShowReg}
-          />
-        ) : null}
-      </div>
-    );
+    setisadmin(true);
+  });
+  console.log("admin/index.js isAdmin", isadmin, "isloggedin", isloggedin);
   return (
-    <div className="body">
-      <AdminHeader />
-      <Dashboard />
-    </div>
+    <span>
+      {!isloggedin ? (
+        <div className="body">
+          {isloggedin ? <AdminHeader /> : null}
+          {showLogin ? (
+            <AdminLogin
+              showLogin={showLogin}
+              setShowLogin={setShowLogin}
+              showReg={showReg}
+              setShowReg={setShowReg}
+            />
+          ) : null}
+          {showReg ? (
+            <AdminRegister
+              showLogin={showLogin}
+              setShowLogin={setShowLogin}
+              showReg={showReg}
+              setShowReg={setShowReg}
+            />
+          ) : null}
+        </div>
+      ) : (
+        <div className="bodyadmin">
+          <AdminHeader />
+          <Dashboard />
+        </div>
+      )}
+    </span>
   );
 };
 

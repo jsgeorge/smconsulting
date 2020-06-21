@@ -27,9 +27,11 @@ const Banner = () => {
             <div className="carousel-caption">
               <h1>Think Big!</h1>{" "}
               <h4>
-                Be aware that the CSS for these layouts is heavily commented. If
-                you do most of your work in Design view, have a peek at the code
-                to get tips{" "}
+                We can offer you a vast range of consulting and supportive
+                services – from creating a business plan to suggesting key
+                improvements that will positively influence your company. We
+                continue to broaden the range of our services and today we also
+                give a chance to those who are
               </h4>
               <p>
                 <Link to="/about" className="btn btn-default clickHere">
@@ -45,9 +47,11 @@ const Banner = () => {
             <div className="carousel-caption">
               <h1>Succeed With US!</h1>
               <h4>
-                Be aware that the CSS for these layouts is heavily commented. If
-                you do most of your work in Design view, have a peek at the code
-                to get tips{" "}
+                Our comapany's vast range of consulting and supportive services
+                – from creating a business plan to suggesting key improvements
+                that will positively influence your company. We continue to
+                broaden the range of our services and today we also give a
+                chance to those who are
               </h4>
               <p>
                 <Link to="/about" className="btn btn-default clickHere">
@@ -63,9 +67,11 @@ const Banner = () => {
             <div className="carousel-caption">
               <h1>Let's Coopeate!</h1>{" "}
               <h4>
-                Be aware that the CSS for these layouts is heavily commented. If
-                you do most of your work in Design view, have a peek at the code
-                to get tips{" "}
+                We can offer you a vast range of consulting and supportive
+                services – from creating a business plan to suggesting key
+                improvements that will positively influence your company. We
+                continue to broaden the range of our services and today we also
+                give a chance to those who are
               </h4>{" "}
               <p>
                 <Link to="/about" className="btn btn-default clickHere">

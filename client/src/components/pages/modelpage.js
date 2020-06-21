@@ -8,7 +8,7 @@ const ModelPage = ({ match }) => {
   }, []);
 
   return (
-    <div id="listing">
+    <div className="page-wrapper" id="top">
       <section className="container-fluid content-section pageHeader">
         <div className="container">
           <div className="row">
@@ -23,9 +23,9 @@ const ModelPage = ({ match }) => {
         </div>
       </section>
 
-      <section class="container-fluid content-section" id="latestprojects">
-        <div class="container">
-          <h1>Model Page</h1>
+      <section className="container-fluid content-section" id="blog">
+        <div className="container">
+          <h1>{match.params.show ? match.params.show : "Model Page"}</h1>
         </div>
       </section>
       <ContactForm />

@@ -19,6 +19,7 @@ const AdminAddProductForm = () => {
     name: "",
     category: "",
     description: "",
+    longdesc: "",
     images: [],
   });
 
@@ -37,7 +38,7 @@ const AdminAddProductForm = () => {
   const validData = () => {
     let errs = {};
     setErrors({});
-    const { name, category } = edited;
+    const { name, category, description, images } = edited;
     if (!name) {
       errs.name = "Inalid/Missing product name";
     }
@@ -45,9 +46,14 @@ const AdminAddProductForm = () => {
     if (!category) {
       errs.category = "inalid/missing category";
     }
-
+    if (!description) {
+      errs.description = "Inalid/Missing product description";
+    }
+    if (!images || images.length === 0) {
+      errs.images = "Inalid/Missing product image";
+    }
     //console.log(errs);
-    if (!name || !category) {
+    if (!name || !category || !description || !images || images.length == 0) {
       setErrors(errs);
       return false;
     }
@@ -64,26 +70,8 @@ const AdminAddProductForm = () => {
     if (images) {
       edited.images = images; //[images];
     }
-    //let h = edited.headline;
-    //if (!edited.headline) h = projheadline;
 
     if (validData()) {
-      // let projdata = {
-      //   name: edited.name,
-      //   category: edited.category,
-      //   property: edited.property,
-      //   location: edited.location,
-      //   city: edited.city,
-      //   state: edited.state,
-      //   area: edited.area,
-      //   cost: edited.cost,
-      //   headline: edited.headline,
-      //   description: edited.description,
-      //   images: edited.images,
-      // };
-
-      //console.log("projdata", edited);
-
       try {
         const response = await axios
           .post("/products/add", edited)
@@ -113,54 +101,66 @@ const AdminAddProductForm = () => {
     <div className="admin-edit-project">
       <div className="form">
         {formError ? <div className="has-error">{formError}</div> : null}
+
         {error ? <div className="has-error">{error}</div> : null}
         <div className="row">
-          <div className="col-md-6">
+          <div className="col col-500">
             <div className={classnames("form-group", { "has-error": errors })}>
               {errors.name ? (
-                <span className="help-block">{errors.name}</span>
-              ) : (
-                <label>Product Name</label>
-              )}
+                <span className="help-block" style={{ marginLeft: "120px" }}>
+                  {errors.name}
+                </span>
+              ) : null}
+              <label>Product Name</label>
+
               <input
                 name="name"
                 type="text"
                 value={edited.name}
                 onChange={handleChange}
+                style={{ color: "#111" }}
               />
             </div>
             <SelectCategories
+              label="Product Category"
+              formtype="form-group"
               category={category}
               setcategory={setcategory}
               editctgry={edited.category}
               errors={errors.category}
             />{" "}
             <br />
-            <div className="form-group">
+            <div className={classnames("form-group", { "has-error": errors })}>
+              {errors.name ? (
+                <span className="help-block" style={{ marginLeft: "120px" }}>
+                  {errors.description}
+                </span>
+              ) : null}
               <label>Description</label>
-
               <textarea
                 name="description"
                 className="form-control"
                 value={edited.description}
                 onChange={handleChange}
-              
-                rows="12"
+                rows="6"
               />
             </div>
           </div>
-          <div className="col-md-5 pull-right">
-            <label>Product Images</label>
-            <div className="edit-image-wrapper">
-              {edited.images && images.length > 0 ? (
-                images.map((i) => (
-                  <img src={i.url} id="img_sm" alt="No Image" />
-                ))
+          <div className="col col-500">
+            <div className={classnames("form-group", { "has-error": errors })}>
+              {errors.images ? (
+                <label className="help-block">{errors.images}</label>
               ) : (
-                <span>NO Image</span>
+                <label>Product Image</label>
               )}
-            </div>
-            <div className="form-group">
+
+              <div className="edit-image-wrapper">
+                {edited.images && images.length > 0
+                  ? images.map((i) => (
+                      <img src={i.url} id="img_sm" alt="No Image" />
+                    ))
+                  : null}
+              </div>
               <FileUpload
                 images={images}
                 setImages={setImages}
@@ -169,18 +169,27 @@ const AdminAddProductForm = () => {
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="form-group2">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => onSubmit()}
-              style={{ clear: "left" }}
-            >
-              Submit
-            </button>
+        <div>
+          <div className="form-group longdesc">
+            <label>Long Description</label>
+
+            <textarea
+              name="longdesc"
+              className="form-control"
+              value={edited.longdec}
+              onChange={handleChange}
+              rows="15"
+            />
           </div>
         </div>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => onSubmit()}
+          style={{ clear: "left" }}
+        >
+          Submit
+        </button>
       </div>
     </div>
   );

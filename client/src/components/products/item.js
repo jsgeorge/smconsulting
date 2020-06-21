@@ -23,19 +23,19 @@ const ProjectItem = ({ show, project }) => {
     area,
     startdate,
   } = project;
-  if (show) {
-    console.log("show", show);
-  }
+
   if (show == "gallery")
     return (
-      <div className="col-md-4 projectitem">
-        {/* {images && images.length > 0 && images[0].url ? (
+      <div className="col-md-4 galleryitem">
+        <Link to={`/detail/products/${name}/${_id}/`}>
+          {/* {images && images.length > 0 && images[0].url ? (
           <img src={images[0].url} id="img_gallery" />
         ) : null} */}
-        {renderCardImage(images, "img_sm")}
-        <h3>
-          <span className="project-name">{name}</span>
-        </h3>
+          {renderCardImage(images, "img_sm")}
+          <h3>
+            <span className="project-name">{name}</span>
+          </h3>
+        </Link>
       </div>
     );
   if (show == "allgallery")
@@ -71,9 +71,9 @@ const ProjectItem = ({ show, project }) => {
     );
 
   return (
-    <div className="col-md-4 projectitem">
+    <div className="col-md-4 col-sm-4 col-xs-6 projectitem">
       <Link to={`/detail/products/${name}/${_id}/`}>
-        <p>
+        <span>
           {renderCardImage(images, "img_sm")}
           <span>
             <h4>
@@ -81,7 +81,7 @@ const ProjectItem = ({ show, project }) => {
             </h4>{" "}
             <span className="propertyfont">{description}</span>
           </span>
-        </p>
+        </span>
       </Link>
     </div>
   );

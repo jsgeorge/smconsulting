@@ -13,6 +13,7 @@ import DetailPage from "./components/pages/model";
 import ServicesPage from "./components/pages/services";
 import ListingsPage from "./components/pages/listings";
 import ItemPage from "./components/pages/item";
+import Auth from "./hoc/auth";
 
 //Adim pages
 import Dashboard from "./admin/dashboard";
@@ -39,11 +40,8 @@ const Routes = () => {
   return (
     <Switch>
       {/* User Routes */}
-      <Route
-        path="/listings/:show/:category/:id"
-        exact
-        component={ListingsPage}
-      />
+      <Route path="/listings/:show/:name/:id" exact component={ListingsPage} />
+      <Route path="/listings/:show/:srch" exact component={ListingsPage} />
       <Route path="/products/:id/detail" exact component={DetailPage} />
       <Route path="/listings/:show" exact component={ListingsPage} />
       <Route path="/detail/:show/:name/:id" exact component={DetailPage} />
@@ -53,6 +51,9 @@ const Routes = () => {
       <Route path="/services" exact component={ServicesPage} />
       <Route path="/products" exact component={ProductsPage} />
       <Route path="/pages/:item" exact component={ItemPage} />
+      <Route path="/about" exact component={AboutPage} />
+      <Route path="/modellayout" component={ModelLayoutPage} />
+
       {/* Admin Routes */}
       <Route
         path="/admin/products/:id/edit"
@@ -91,15 +92,13 @@ const Routes = () => {
       <Route path="/admin/products" exact component={AdminProductsPage} />
       <Route path="/admin/model" exact component={AdminModelPage} />
       <Route
-        path="/admin/proudctcategories"
+        path="/admin/productcategories"
         exact
         component={AdminProductCategoriesPage}
       />
       <Route path="/admin/dashboard" exact component={Dashboard} />
       <Route path="/admin" exact component={Admin} />
       {/* User Pages 2 */}
-      <Route path="/about" exact component={AboutPage} />
-      <Route path="/modellayout" component={ModelLayoutPage} />
       <Route path="/" exact component={HomePage} />
       {/* Page Not found */}
       <Route

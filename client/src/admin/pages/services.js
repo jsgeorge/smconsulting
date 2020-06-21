@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../../admin-styles.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import classnames from "classnames";
 import AdminServicesList from "../comonents/services";
@@ -13,7 +13,11 @@ const AdminServicesPage = () => {
   const [desc, setDesc] = useState();
   const [error, setError] = useState("");
   const [formError, setFormError] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
+  useEffect(() => {
+    if (!localStorage.jwtToken) setRedirect(true);
+  });
   const handleChange = (e) => {
     setService(e.target.value);
   };
@@ -61,9 +65,10 @@ const AdminServicesPage = () => {
   const onSubmitAdd = async () => {
     await submitservice();
   };
+  if (redirect) return <Redirect to="/admin" />;
 
   return (
-    <div className="body" id="services">
+    <div className="bodyadmin" id="services">
       <AdminHeader />
       <div className="row">
         <AdminSidebar />

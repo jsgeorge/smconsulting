@@ -18,8 +18,6 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  console.log(req.body);
-
   User.findOne({ username: req.body.username }, (err, user) => {
     if (!user)
       return res.json({
@@ -31,16 +29,20 @@ router.post("/", (req, res) => {
     }
     user.comparePassword(req.body.password, (err, isMatch) => {
       if (!isMatch) {
-        console.log("wrong password");
         return res.json({
           loginSuccess: false,
           message: "Login failed. Wrong password",
         });
       }
-      console.log("login successful");
       // res.status(200).json({
       //   loginSuccess: true
       // });
+      if (user.role === 2) {
+        return res.json({
+          loginSuccess: false,
+          message: "Login failed. User is not administrator",
+        });
+      }
       user.generateToken((err, user) => {
         if (err) {
           return res.status(400).send(err);

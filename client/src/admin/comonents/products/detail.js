@@ -61,23 +61,23 @@ const AdminProductDetail = ({ match }) => {
     return <Redirect to={`/admin/products`} />;
   }
   return (
-    <div className="body" id="products">
+    <div className="bodyadmin" id="products">
       <AdminHeader />
       <div className="row">
         <AdminSidebar />
         <div className="col-md-10 adminContent">
           <h3>products</h3>
           <div className="cmd-line">
-            <Link to="/admin" className="btnLink">
+            <Link to="/admin" className="btnLinkadmin">
               Close
             </Link>
-            <Link to="/admin/products/" className="btnLink">
+            <Link to="/admin/products/" className="btnLinkadmin">
               List
             </Link>
-            <Link to="/admin/products/add" className="btnLink">
+            <Link to="/admin/products/add" className="btnLinkadmin">
               Add
             </Link>
-            <Link to={`/admin/products/${_id}/edit`} className="btnLink">
+            <Link to={`/admin/products/${_id}/edit`} className="btnLinkadmin">
               Edit
             </Link>
             <button onClick={() => onDelete(_id)} className="btn2" id="btnDel">

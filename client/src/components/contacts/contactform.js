@@ -1,29 +1,64 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import axios from "axios";
 
 const ContactForm = () => {
+  const [email, setemail] = useState("");
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const submitSignup = async () => {
+    setError("");
+    setSuccessMessage("");
+    if (email) {
+      try {
+        await axios
+          .post("/emailist", email)
+          .then((res) => {
+            setSuccessMessage(
+              "Thank you. You have sucessfully signed up for our mailing list"
+            );
+            setemail("");
+          })
+          .catch((err) => {
+            setError("Invlid/missing email or network problem");
+          });
+      } catch (err) {
+        setError("Invlid/missing email or network problem");
+      }
+    }
+  };
+
+  const handleSubmitSignup = async (e) => {
+    e.preventDefault();
+    await submitSignup();
+  };
   return (
     <section className="container-fluid content-section" id="contacts">
       <div className="container">
         <div className="row">
           <div className="col-md-4 col-sm-4">
-            <form action="email.php" method="post">
+            <form
+              onSubmit={(e) => handleSubmitSignup(e)}
+              className="emailsignupform"
+            >
               <h4>SIGN UP FOR UPDATES</h4>
+              {error ? <p className="has-error">{error}</p> : null}
+              <input
+                type="email"
+                className="form-control"
+                id="contactEmail"
+                name="email"
+                placeholder="Email"
+                onChange={(e) => setemail(e.target.value)}
+              />
 
-              <div className="form-group">
-                <label>Email address</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="contactEmail"
-                  name="email"
-                  placeholder="Email"
-                />
-              </div>
-              <div className="form-group">
-                <button type="submit" className="button">
-                  Submit
-                </button>
-              </div>
+              <button type="submit" className="button">
+                Signup
+              </button>
+
+              {successMessage ? (
+                <p className="has-success">{successMessage}</p>
+              ) : null}
             </form>
           </div>
 
@@ -32,22 +67,14 @@ const ContactForm = () => {
             <p>
               3200 Provicial Rd <br /> Santa Clara, CA 94993
             </p>
-            <table>
-              <tr>
-                <td>Sales</td>
-                <td> (800) 939-9999</td>
-              </tr>
-              <tr>
-                {" "}
-                <td>Advertising </td>
-                <td>(800) 939-9933</td>
-              </tr>
-              <tr>
-                {" "}
-                <td> Support </td>
-                <td>(800) 939-9997</td>
-              </tr>
-            </table>
+            <div id="foot_phones">
+              <div className="foot_phone_label">Sales</div>
+              <div className="foot_phone">(800) 939-9999 </div>
+              <div className="foot_phone_label">Advertising</div>
+              <div className="foot_phone">(800) 939-9933 </div>
+              <div className="foot_phone_label">Support</div>
+              <div className="foot_phone">(800) 939-9997</div>
+            </div>
             <p>
               Email: <strong>sales@smconsulting.com</strong>
             </p>

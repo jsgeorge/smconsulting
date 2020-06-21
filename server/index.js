@@ -12,6 +12,7 @@ const products = require("./routes/products.js");
 const productcategories = require("./routes/productcategories.js");
 const servicecategories = require("./routes/servicecategories.js");
 const services = require("./routes/services.js");
+const emailists = require("./routes/emailists");
 const app = express();
 //const async = require("async");
 
@@ -35,6 +36,9 @@ cloudinary.config({
   api_secret: process.env.CLOUD_API_SECRET,
 });
 
+//API routes
+//
+//Produts
 app.use("/products", products);
 app.use("/products/add", products);
 app.use("/products/article", products);
@@ -66,7 +70,8 @@ app.use("/services/view", services);
 // //users
 app.use("/auth", auth);
 app.use("/users", users);
-
+// emailists
+app.use("/emailist", emailists);
 //default
 if (process.env.NODE_ENV === "production") {
   // const path = require("path");

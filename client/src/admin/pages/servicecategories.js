@@ -60,7 +60,7 @@ const AdminServiceCategoryPage = () => {
   };
 
   return (
-    <div className="body" id="properties">
+    <div className="bodyadmin" id="servctgry">
       <AdminHeader />
       <div className="row">
         <AdminSidebar />

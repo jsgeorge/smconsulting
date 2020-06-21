@@ -4,47 +4,52 @@ import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import { ProductContext } from "../../context/product-context";
 import { ProductCategoryContext } from "../../context/product-category-context";
-
 import AdminHeader from "../layout/header";
 import AdminSidebar from "../layout/sidebar";
 import AdminCommandLine from "../layout/cmdline";
 import AdminProductList from "../comonents/products";
+import SelectCategories from "../comonents/productcategories/selectcategory";
 
 const AdminProductsPage = () => {
   const [srch, setSrch] = useState("");
   const [error, setError] = useState("");
   const { products, setproducts } = useContext(ProductContext);
-  const { properties, setProperties } = useContext(ProductCategoryContext);
-
+  const { productcategories, setproductcategories } = useContext(
+    ProductCategoryContext
+  );
+  const [redirect, setRedirect] = useState(false);
   const [header, setHeader] = useState("");
   const [defaultlist, setDefaultlist] = useState(false);
+  const [category, setcategory] = useState("");
+
   useEffect(() => {
-    const fetchProperties = async () => {
-      try {
-        const response = await axios
-          .get("/productcategories")
-          .then((res) => {
-            setProperties(res.data);
-          })
-          .catch((err) => {
-            setError("Error. could not retrieve categories. Network error");
-            console.log(err);
-          });
-      } catch (err) {
-        setError("Error. could not retrieve categories. Network error");
-        console.log(err);
-      }
-    };
-    fetchProperties();
+    if (!localStorage.jwtToken) setRedirect(true);
+    // const fetchProperties = async () => {
+    //   try {
+    //     const response = await axios
+    //       .get("/productcategories")
+    //       .then((res) => {
+    //         setproductcategories(res.data);
+    //       })
+    //       .catch((err) => {
+    //         setError("Error. could not retrieve categories. Network error");
+    //         console.log(err);
+    //       });
+    //   } catch (err) {
+    //     setError("Error. could not retrieve categories. Network error");
+    //     console.log(err);
+    //   }
+    // };
+    // fetchProperties();
 
     let filters = [];
     let limit = { limit: 5000 };
+
     const fetchData = async () => {
       const response = await axios
         .post("/products/view", limit)
         .then((res) => {
           setproducts(res.data.articles);
-          console.log(res.data.articles);
         })
         .catch((err) => {
           setError("Error cannot show products, Network Error");
@@ -53,20 +58,20 @@ const AdminProductsPage = () => {
     };
     fetchData();
   }, []);
+
   const searchproducts = (srchby, id) => {
     setHeader(srch);
+    console.log(srchby, id);
     let filters = [];
     if (srchby == "byname") filters = { filters: [{ name: srch }] };
     else if (srchby == "byid") filters = { filters: [{ id: srch }] };
-    else if (srchby == "byprop") {
-      filters = { filters: [{ property: id }] };
+    else if (srchby == "byctgry") {
+      filters = { filters: [{ category: id }] };
     }
     axios
       .post("/products/view", filters)
       .then((res) => {
         setproducts(res.data.articles);
-        console.log("Search for", srch);
-        console.log(res.data.articles);
         setDefaultlist(true);
       })
       .catch((err) => {
@@ -94,20 +99,23 @@ const AdminProductsPage = () => {
     //setProjproperty(e.target.value);
     searchproducts("byprop", e.target.value);
   };
-
+  const onFilterCategory = () => {
+    searchproducts("byctgry", category);
+  };
+  if (redirect) return <Redirect to="/admin" />;
   return (
-    <div className="body" id="products">
+    <div className="bodyadmin" id="products">
       <AdminHeader />
       <div className="row">
         <AdminSidebar />
         <div className="adminContent">
-          <h3>products</h3>
+          <h3>Products</h3>
           <div className="cmd-line">
-            <Link to="/admin" className="btnLink">
+            <Link to="/admin" className="btnLinkadmin">
               Close
             </Link>
-            <Link to="/admin/products/add" className="btnLink">
-              New
+            <Link to="/admin/products/add" className="btnLinkadmin">
+              Add
             </Link>
             {defaultlist ? (
               <button onClick={() => defaltproducts()} className="btnLink2">
@@ -115,9 +123,8 @@ const AdminProductsPage = () => {
               </button>
             ) : null}
             <div className="cmd-form-srch">
-              Search
+              <label style={{ width: "60px" }}>Search</label>
               <input
-                className="form-control"
                 type="text"
                 value={srch}
                 placeholder=""
@@ -125,20 +132,32 @@ const AdminProductsPage = () => {
               />
               {/* <Link to={`/admin/products/search/${srchstr}`}>GO</Link> */}
               <button onClick={() => searchproducts("byname")}>byName</button>
-              <button onClick={() => searchproducts("byid")}>byId</button>
+              {/* <button onClick={() => searchproducts("byid")}>byId</button> */}
             </div>
-            <div className="cmd-form">
-              Category
+            {/* <div className="cmd-form">
+              Filer Category
               <select>
                 <option>Select</option>
               </select>
-            </div>
+            </div> */}
+            <SelectCategories
+              label="Filter Category"
+              formtype="cmd-form"
+              category={category}
+              setcategory={setcategory}
+            />
+            <button onClick={() => onFilterCategory()}>GO</button>
           </div>
           <div style={{ clear: "left", marginTop: "30px" }}>
             {" "}
             {header ? <h3>Search Products: {header}</h3> : null}
           </div>
-          <AdminProductList products={products} error={error} />
+          {error ? (
+            <div className="has-error">{error}</div>
+          ) : (
+            <AdminProductList products={products} />
+          )}
+          <div className="row" />
         </div>
       </div>
     </div>
