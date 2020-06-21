@@ -36,7 +36,9 @@ router.post("/view", (req, res) => {
   let name = req.body.filters[0].category;
   ServiceCategory.find({ name: name }, (err, doc) => {
     if (err) return res.status(400).send(err);
-    if (doc) {
+    if (doc && doc[0] && doc[0]._id) {
+      console.log("doc", doc);
+
       id = doc[0]._id;
       findArgs = { category: id };
       //let limit = req.body.limit ? parseInt(req.body.limit) : 4;
