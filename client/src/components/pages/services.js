@@ -1,16 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { ServiceCategoryContext } from "../../context/service-category-context";
+
 import ServicesList from "../services";
 import ContactForm from "../contacts/contactform";
 import axios from "axios";
 
 const ServicesPage = () => {
+  const { servicecategories, setservicecategories } = useContext(
+    ServiceCategoryContext
+  );
   const [error, setError] = useState("");
 
-  useEffect(() => {}, []);
+  const fetchData = async () => {
+    // try {
+    await axios
+      .get("/servicecategories")
+      .then((res) => {
+        setservicecategories(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        setError(
+          "Error cannont retrieve project servcategories.Network propblem"
+        );
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
-    <div className="page-wrapper" id="top">
+    <div className="page-wrapper services" id="top">
       <section className="container-fluid content-section pageHeader">
         <div className="container">
           <div className="row">
@@ -25,7 +47,46 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      <section className="container-fluid content-section" id="ourservices1">
+      {servicecategories
+        ? servicecategories.map((sc) => (
+            <span key={sc._id}>
+              {sc.name != "Other" ? (
+                <section
+                  className="container-fluid content-section"
+                  id="ourservices1"
+                >
+                  <div className="container">
+                    <h1>{sc.name}</h1>
+                    <ServicesList show={sc.name} col={4} />
+                  </div>
+                </section>
+              ) : (
+                <section
+                  className="container-fluid content-section"
+                  id="ourservices"
+                >
+                  <div className="container">
+                    <h1>Other Services</h1>
+                    <div className="row">
+                      <div className="col-md-3" id="servcol">
+                        We open new departments in SM Consulting every year. It
+                        gives our clients a unique possibility to decide what
+                        kind of consulting and supportive services they need.
+                        Moreover, with the laps of time we plan to open new
+                        departments and offices in other countries
+                      </div>
+                      <div className="col-md-9" id="servcol2">
+                        <ServicesList show={"Other"} col={2} />
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              )}
+            </span>
+          ))
+        : null}
+
+      {/* <section className="container-fluid content-section" id="ourservices1">
         <div className="container">
           <h1>Marketing Services</h1>
           <ServicesList show={"Marketing"} col={4} />
@@ -84,7 +145,7 @@ const ServicesPage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <ContactForm />
       <a href="#top" className="topPage">

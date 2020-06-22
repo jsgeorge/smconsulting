@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 const ContactForm = () => {
   const [email, setemail] = useState("");
   const [error, setError] = useState("");
@@ -77,6 +77,9 @@ const ContactForm = () => {
             </div>
             <p>
               Email: <strong>sales@smconsulting.com</strong>
+            </p>
+            <p>
+              <Link to="/admin">Admin Login</Link>
             </p>
           </div>
 

@@ -59,6 +59,9 @@ const Header = () => {
             <li className="page-scroll">
               <Link to="/contacts">CONTACTS</Link>
             </li>
+            <li className="page-scroll">
+              <Link to="/contacts">CONTACTS</Link>
+            </li>
           </ul>
         </div>
 

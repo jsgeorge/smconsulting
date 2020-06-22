@@ -15,11 +15,10 @@ router.post("/", (req, res) => {
 
 router.get("/", (req, res) => {
   ServiceCategory.find({})
-    .sort([["name", "asc"]])
-    .exec((err, servcategories) => {
-      if (err) return res.status(400).send(err);
-      res.status(200).json(servcategories);
-    });
+  .exec((err, servcategories) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).json(servcategories);
+  });
 });
 
 router.get("/name", (req, res) => {
